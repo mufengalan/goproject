@@ -2,14 +2,14 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"net/http"
+	"project/App/Login"
 )
 
-func main()  {
-    r := gin.Default()
-    r.GET("/get", func(context *gin.Context) {
-		filename := context.Query("filename")
-		context.String(http.StatusOK,"%s ",filename)
-	})
-    r.Run()
+func main() {
+	// 1.创建路由
+	// 默认使用了2个中间件Logger(), Recovery()
+	r := gin.Default()
+	// JSON绑定
+	r.POST("/loginForm", Login.AppLogin)
+	r.Run(":8000")
 }
