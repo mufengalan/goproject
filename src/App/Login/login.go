@@ -28,3 +28,7 @@ func AppLogin(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{"status": "200"})
 }
+
+func ALogin(c *gin.Context) {
+
+}
