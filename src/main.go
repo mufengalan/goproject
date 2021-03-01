@@ -6,10 +6,8 @@ import (
 )
 
 func main() {
-	// 1.创建路由
-	// 默认使用了2个中间件Logger(), Recovery()
 	r := gin.Default()
-	// JSON绑定
-	r.POST("/loginForm", Login.AppLogin)
+	r.POST("/loginForm", Login.AppLogin) //表单参数解析
+	r.GET("/redirect", Login.Redirect)   //重定向
 	r.Run(":8000")
 }
