@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"project/App/Login"
+	"project/MiddleWare"
 )
 
 func main() {
@@ -12,6 +13,7 @@ func main() {
 	r.GET("/redirect", Login.Redirect)   //重定向
 	r.GET("/long_async", Login.Async)
 	r.GET("/long_sync", Login.Sync)
-
+	r.GET("/home", MiddleWare.AuthMiddleWare())
+	r.GET("/login", Login.ALogin)
 	r.Run(":8000")
 }

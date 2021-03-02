@@ -30,5 +30,8 @@ func AppLogin(c *gin.Context) {
 }
 
 func ALogin(c *gin.Context) {
-
+	c.SetCookie("abc", "123", 60, "/",
+		"localhost", false, true)
+	//返回信息
+	c.String(200, "Login success!")
 }

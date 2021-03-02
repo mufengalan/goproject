@@ -6,17 +6,18 @@ import (
 )
 
 func AuthMiddleWare() gin.HandlerFunc {
-	return func(context *gin.Context) {
-		if cookie, err := context.Cookie("abc"); err == nil {
+	return func(c *gin.Context) {
+		if cookie, err := c.Cookie("abc"); err == nil {
 			if cookie == "123" {
-				context.Next()
+				c.JSON(200, gin.H{"data": "home"})
+				c.Next()
 				return
 			}
 		}
 		//返回错误
-		context.JSON(http.StatusUnauthorized, gin.H{"error": "err"})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "err"})
 		//若验证不通过，不在调用后续的函数处理
-		context.Abort()
+		c.Abort()
 		return
 	}
 }
